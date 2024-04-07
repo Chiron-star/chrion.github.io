@@ -77,12 +77,14 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </li>
 </ul>
 <ol>
-<li>基于巧妙提示词的（通过率100%）<br>
+<li>基于巧妙提示词的（一次询问，通过率100%）<br>
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/Chiron-star/chrion.github.io/assets/64126734/cbfa5eb8-b68a-44bd-a6c5-a1c1f4d35245"><img src="https://github.com/Chiron-star/chrion.github.io/assets/64126734/cbfa5eb8-b68a-44bd-a6c5-a1c1f4d35245" alt="image" style="max-width: 100%;"></a></li>
-<li>直接询问的（通过率36%）<br>
+<li>直接询问的（一次询问，通过率36%）<br>
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/Chiron-star/chrion.github.io/assets/64126734/7c2fbc9d-3e42-40cb-ae22-00955d4627e9"><img src="https://github.com/Chiron-star/chrion.github.io/assets/64126734/7c2fbc9d-3e42-40cb-ae22-00955d4627e9" alt="5664125800e8c15579b1176b5aa6aad" style="max-width: 100%;"></a></li>
 </ol>
 <p>--&gt;其中两者都是基于动态规划，但前者使用了前缀和进行了优化（提示词诱导的），而后者给出了更直接的解决方案，显然在相同时间或者交互成本下，前者取得了更高的效率（100% vs 36%）。</p>
+<h1>一个额外的有趣的次数对比实验</h1>
+<p>这里试图通过直接询问，观察通过几次交互可以达到提示词（一次交互）的效果。需要注意的是这里有一个实验变量没控制好，就是这里的模型是claude-opus，也是目前Claude发布的最强模型，在社区中，编程能力得到不错的认可，多人认为超过gpt4，所以这里也可一定程度弥补实验变量不一致带来的不可靠性。实验结果是需要两次交互（交互效率降低一倍），这是在已知正确答案的情况下继续追问获得的，通常谁会这么做呢？</p>
 <h3>附录</h3>
 <ul>
 <li>提示词被包装到<a href="https://chat.openai.com/g/g-vvg8XXOlR-coder" rel="nofollow">GPTs</a>中，欢迎使用。</li>
@@ -186,7 +188,153 @@ $third_bottleneck_issues</p>
 $third_bottleneck_fix_attempt</p>
 <h2>完整代码重写与性能改进:</h2>
 <p>$full_code_with_improvements<br>
-&lt;/response_format&gt;`</p></div>
+&lt;/response_format&gt;`</p>
+<ul>
+<li>与claude-opus的交互实验<br>
+-题目描述<br>
+小苯是“小红书app”的一位博主，他在自己的账号中发布了n篇分享，编号从1到 n。有一天他想试试看自己能不能准确的记住这n篇分享的点赞数，但他很快就发现凭自己的记忆力根本没法准确地记住每一篇的点赞数，但他记得如下两种信息:<br>
+1.每篇分享的点赞量都为正数，且不超过m。<br>
+2.第i篇分享的点赞量和第i+1篇分享的点赞量的大小关系。<br>
+他想知道，在已知这些信息的前提下，所有分享的点赞量有多少种不同的可能。<br>
+(结果可能很大，请输出其对 1000000007 取模的值)</li>
+</ul>
+<p>输入描述:<br>
+输入包含两行。<br>
+第一行两个正整数 n,m(1 ≤n,m≤2000)，分别表示分享的总个数和每篇分享的点赞数的上限。<br>
+第二行一个长度为 n-1 的字符串 si，其中只包含"&gt;”，"="这三种字符。如果si='&gt;'，则第i篇分享的点赞量严格高于第 i+1篇，”&lt;”和“=”同理。<br>
+输出描述<br>
+一行一个整数表示符合条件的所有分享的点赞量有多少种不同的可能，结果对 1000000007 取模。<br>
+样例输入<br>
+4 3<br>
+＜=＞<br>
+样例输出<br>
+5<br>
+提示<br>
+说明[1，2，2，1][2，3，3，2][1，3，3，1][2，3，3，1][1，3，3，2]一共五种可能</p>
+<p>这是一个动态规划问题。我们可以用dp[i][j]表示前i篇分享，第i篇分享的点赞数为j的情况下的可能数量。然后根据第i篇和第i+1篇的大小关系来更新dp数组。</p>
+<p>以下是C++代码实现：</p>
+<p>#include <br>
+#include <br>
+#include </p>
+<p>using namespace std;</p>
+<p>const int MOD = 1000000007;</p>
+<p>int main() {<br>
+int n, m;<br>
+string s;<br>
+cin &gt;&gt; n &gt;&gt; m &gt;&gt; s;</p>
+<pre class="notranslate"><code class="notranslate">vector&lt;vector&lt;int&gt;&gt; dp(n + 1, vector&lt;int&gt;(m + 1, 0));
+for (int j = 1; j &lt;= m; j++) {
+    dp[1][j] = 1;
+}
+
+for (int i = 2; i &lt;= n; i++) {
+    if (s[i-2] == '&lt;') {
+        for (int j = 1; j &lt;= m; j++) {
+            for (int k = 1; k &lt; j; k++) {
+                dp[i][j] = (dp[i][j] + dp[i-1][k]) % MOD;
+            }
+        }
+    } else if (s[i-2] == '=') {
+        for (int j = 1; j &lt;= m; j++) {
+            dp[i][j] = dp[i-1][j];
+        }
+    } else {
+        for (int j = 1; j &lt;= m; j++) {
+            for (int k = j + 1; k &lt;= m; k++) {
+                dp[i][j] = (dp[i][j] + dp[i-1][k]) % MOD;
+            }
+        }
+    }
+}
+
+int ans = 0;
+for (int j = 1; j &lt;= m; j++) {
+    ans = (ans + dp[n][j]) % MOD;
+}
+cout &lt;&lt; ans &lt;&lt; endl;
+
+return 0;
+</code></pre>
+<p>}<br>
+解释：</p>
+<p>我们用二维数组dp，其中dp[i][j]表示前i篇分享，第i篇分享的点赞数为j的情况下的可能数量。<br>
+初始化dp[1][j] = 1，表示第一篇分享的点赞数可以是1到m的任意值。<br>
+从第二篇分享开始，根据第i篇和第i+1篇的大小关系来更新dp数组：<br>
+如果s[i-2] == '&lt;'，说明第i篇分享的点赞数要小于第i-1篇，所以我们枚举第i篇的点赞数j，然后将第i-1篇点赞数小于j的所有情况累加到dp[i][j]上。<br>
+如果s[i-2] == '='，说明第i篇和第i-1篇的点赞数相等，直接将dp[i][j]赋值为dp[i-1][j]。<br>
+如果s[i-2] == '&gt;'，说明第i篇分享的点赞数要大于第i-1篇，类似地枚举第i篇的点赞数j，将第i-1篇点赞数大于j的所有情况累加到dp[i][j]上。<br>
+最后将dp[n][j]累加起来，就是所有可能的点赞数的总数。<br>
+时间复杂度为O(nm^2)，空间复杂度为O(nm)。</p>
+<p>用python实现时间效率最高的算法</p>
+<p>下面是用Python实现的时间效率最高的算法：</p>
+<p>MOD = 1000000007</p>
+<p>def count_possibilities(n, m, s):<br>
+dp = [[0] * (m + 1) for _ in range(n + 1)]<br>
+for j in range(1, m + 1):<br>
+dp[1][j] = 1</p>
+<pre class="notranslate"><code class="notranslate">for i in range(2, n + 1):
+    if s[i-2] == '&lt;':
+        for j in range(1, m + 1):
+            dp[i][j] = sum(dp[i-1][k] for k in range(1, j)) % MOD
+    elif s[i-2] == '=':
+        for j in range(1, m + 1):
+            dp[i][j] = dp[i-1][j]
+    else:
+        for j in range(1, m + 1):
+            dp[i][j] = sum(dp[i-1][k] for k in range(j + 1, m + 1)) % MOD
+
+return sum(dp[n][j] for j in range(1, m + 1)) % MOD
+</code></pre>
+<p>n, m = map(int, input().split())<br>
+s = input()<br>
+print(count_possibilities(n, m, s))<br>
+解释：</p>
+<p>我们使用与之前C++实现类似的动态规划方法，用二维数组dp，其中dp[i][j]表示前i篇分享，第i篇分享的点赞数为j的情况下的可能数量。<br>
+初始化dp[1][j] = 1，表示第一篇分享的点赞数可以是1到m的任意值。<br>
+从第二篇分享开始，根据第i篇和第i+1篇的大小关系来更新dp数组：<br>
+如果s[i-2] == '&lt;'，说明第i篇分享的点赞数要小于第i-1篇，所以我们枚举第i篇的点赞数j，然后将第i-1篇点赞数小于j的所有情况累加到dp[i][j]上。这里使用了Python的sum函数和生成器表达式来优化求和过程。<br>
+如果s[i-2] == '='，说明第i篇和第i-1篇的点赞数相等，直接将dp[i][j]赋值为dp[i-1][j]。<br>
+如果s[i-2] == '&gt;'，说明第i篇分享的点赞数要大于第i-1篇，类似地枚举第i篇的点赞数j，将第i-1篇点赞数大于j的所有情况累加到dp[i][j]上。同样使用了sum函数和生成器表达式。<br>
+最后使用sum函数和生成器表达式将dp[n][j]累加起来，就是所有可能的点赞数的总数。<br>
+这个Python实现利用了sum函数和生成器表达式来优化求和过程，避免了显式的嵌套循环，提高了时间效率。</p>
+<p>时间复杂度仍为O(nm^2)，空间复杂度为O(nm)。</p>
+<p>这是效率最高的办法吗</p>
+<p>你提出了一个很好的问题。我们可以进一步优化算法，将时间复杂度降低到O(n*m)。</p>
+<p>优化的思路是，我们可以预处理出前缀和数组，然后在更新dp数组时，直接使用前缀和来计算区间和，避免了内层循环。</p>
+<p>下面是优化后的Python代码：</p>
+<p>MOD = 1000000007</p>
+<p>def count_possibilities(n, m, s):<br>
+dp = [[0] * (m + 1) for _ in range(n + 1)]<br>
+for j in range(1, m + 1):<br>
+dp[1][j] = 1</p>
+<pre class="notranslate"><code class="notranslate">for i in range(2, n + 1):
+    prefix_sum = [0] * (m + 2)
+    for j in range(1, m + 1):
+        prefix_sum[j + 1] = (prefix_sum[j] + dp[i-1][j]) % MOD
+
+    if s[i-2] == '&lt;':
+        for j in range(1, m + 1):
+            dp[i][j] = prefix_sum[j]
+    elif s[i-2] == '=':
+        for j in range(1, m + 1):
+            dp[i][j] = dp[i-1][j]
+    else:
+        for j in range(1, m + 1):
+            dp[i][j] = (prefix_sum[m + 1] - prefix_sum[j + 1]) % MOD
+
+return sum(dp[n][j] for j in range(1, m + 1)) % MOD
+</code></pre>
+<p>n, m = map(int, input().split())<br>
+s = input()<br>
+print(count_possibilities(n, m, s))<br>
+解释：</p>
+<p>我们在每次更新dp数组之前，先计算出前缀和数组prefix_sum。prefix_sum[j]表示dp[i-1][1]到dp[i-1][j-1]的和。<br>
+当s[i-2] == '&lt;'时，我们直接将prefix_sum[j]赋值给dp[i][j]，因为dp[i][j]的值就是dp[i-1][1]到dp[i-1][j-1]的和。<br>
+当s[i-2] == '='时，更新方式不变，直接将dp[i-1][j]赋值给dp[i][j]。<br>
+当s[i-2] == '&gt;'时，我们将prefix_sum[m + 1]减去prefix_sum[j + 1]，得到dp[i-1][j+1]到dp[i-1][m]的和，赋值给dp[i][j]。<br>
+最后的求和过程不变。<br>
+通过引入前缀和数组，我们避免了内层循环，将时间复杂度降低到了O(n*m)。</p>
+<p>空间复杂度仍为O(n*m)，但我们可以进一步优化空间复杂度到O(m)，因为在更新dp数组时，我们只需要用到上一行的数据。你可以尝试自己实现空间优化的版本。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
