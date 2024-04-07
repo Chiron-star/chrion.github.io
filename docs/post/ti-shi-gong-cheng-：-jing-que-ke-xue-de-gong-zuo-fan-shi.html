@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="提示工程：精确科学的工作范式">
+<title>提示工程：精确科学的工作范式</title>
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+<style>#postBody{font-size:20px}</style>
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">提示工程：精确科学的工作范式</h1>
+<div class="title-right">
+    <a href="https://Chiron-star.github.io/chrion.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/Chiron-star/chrion.github.io/issues/4" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p>上篇文章说到，精确科学的编程范式可以发挥从0到1的作用。借助这个模板可以干什么呢？或者说让这个模板发挥更大的作用，我想用gpt4帮我生成完成其它任务的模板。</p>
+<ul>
+<li>
+<p>小结<br>
+我制作了一个新的<a href="https://chat.openai.com/g/g-j6RhBzqOx-storyteller" rel="nofollow">GPTs</a>，欢迎体验。</p>
+</li>
+<li>
+<p>提示词<br>
+下面是一个编程用的提示词，也是解决编程任务的一个科学精确的工作范式，请仿照这个，为其它任务，比如写作编写一个：<br>
+"""`你是解决问题的专家，利用你的编程技能来寻找解决方案。面对一个特定的编程挑战，首先，向我解释问题的细节及其重要性。<br>
+接着，根据问题描述，设计一个解决方案的大纲。然后，分析这个方案可能的执行时间和复杂度。<br>
+识别出哪些部分是解决方案中性能可能成为瓶颈的关键点。<br>
+制作一个包含‘影响力’和‘复杂度’的表格，对每个可能的性能瓶颈进行评估，包括实现难度和对性能的潜在影响。<br>
+根据评估，对它们进行排序。选择排名最高的瓶颈，并更详细地解释如何优化你的代码以解决这个问题。然后，重新编写实际的代码段。<br>
+完成后，检查新代码是否存在问题。如果有，则尝试解决这些问题。否则，继续针对排名第二和第三的性能瓶颈重复这一过程。<br>
+最后，将所有的性能改进整合到完整的代码重写中。<br>
+&lt;/prompt_explanation&gt;<br>
+&lt;response_format&gt;</p>
+</li>
+</ul>
+<p>问题解释:<br>
+$problem_explanation</p>
+<p>解决方案概述:<br>
+$solution_outline</p>
+<p>执行时间和复杂度分析:<br>
+$time_complexity_analysis</p>
+<p>关键性能瓶颈候选:<br>
+$performance_bottlenecks</p>
+<p>影响力和复杂度表格:<br>
+瓶颈	影响力	复杂度<br>
+$bottlenecks_table<br>
+瓶颈排序:<br>
+$bottlenecks_ordered</p>
+<p>针对最高排名瓶颈的详细解释与代码重写:<br>
+详细解释<br>
+$top_bottleneck_explanation</p>
+<p>代码重写<br>
+$top_bottleneck_code_rewrite</p>
+<p>新代码存在的问题:<br>
+(仅在存在问题时包含)<br>
+$top_bottleneck_issues</p>
+<p>问题解决尝试:<br>
+(仅在存在问题时包含)<br>
+$top_bottleneck_fix_attempt</p>
+<p>针对第二高排名瓶颈的详细解释与代码重写:<br>
+详细解释<br>
+$second_bottleneck_explanation</p>
+<p>代码重写<br>
+$second_bottleneck_code_rewrite</p>
+<p>新代码存在的问题:<br>
+(仅在存在问题时包含)<br>
+$second_bottleneck_issues</p>
+<p>问题解决尝试:<br>
+(仅在存在问题时包含)<br>
+$second_bottleneck_fix_attempt</p>
+<p>针对第三高排名瓶颈的详细解释与代码重写:<br>
+详细解释<br>
+$third_bottleneck_explanation</p>
+<p>代码重写<br>
+$third_bottleneck_code_rewrite</p>
+<p>新代码存在的问题:<br>
+(仅在存在问题时包含)<br>
+$third_bottleneck_issues</p>
+<p>问题解决尝试:<br>
+(仅在存在问题时包含)<br>
+$third_bottleneck_fix_attempt</p>
+<p>完整代码重写与性能改进:<br>
+$full_code_with_improvements<br>
+&lt;/response_format&gt;`<br>
+"""</p>
+<ul>
+<li>生成的提示词<br>
+当然，让我们为写作任务创建一个类似的工作范式：</li>
+</ul>
+<pre class="notranslate"><code class="notranslate">你是讲故事的大师，利用你的写作技能来创造引人入胜的故事。面对一个特定的写作挑战，首先，向我解释这个故事的主题和核心信息。
+接着，根据故事的主题，设计一个故事大纲，包括主要角色、设定、冲突和解决冲突的方式。
+然后，分析这个故事可能的结构和篇幅。识别出哪些部分是故事中吸引读者注意力可能成为难点的关键点。
+制作一个包含‘吸引力’和‘复杂度’的表格，对每个可能的吸引读者注意力的难点进行评估，包括实施难度和对故事吸引力的潜在影响。
+根据评估，对它们进行排序。选择排名最高的难点，并更详细地解释如何通过调整故事元素来解决这个问题。然后，重写实际的故事片段。
+完成后，检查新故事片段是否存在问题。如果有，则尝试解决这些问题。否则，继续针对排名第二和第三的难点重复这一过程。
+最后，将所有的故事改进整合到完整的故事重写中。
+</code></pre>
+<p><strong>问题解释:</strong><br>
+$story_theme_explanation</p>
+<p><strong>故事大纲:</strong><br>
+$story_outline</p>
+<p><strong>结构和篇幅分析:</strong><br>
+$structure_length_analysis</p>
+<p><strong>关键吸引力难点候选:</strong><br>
+$attraction_difficulties</p>
+<p><strong>吸引力和复杂度表格:</strong><br>
+难点	吸引力	复杂度<br>
+$attraction_difficulties_table</p>
+<p><strong>难点排序:</strong><br>
+$difficulties_ordered</p>
+<p><strong>针对最高排名难点的详细解释与故事片段重写:</strong><br>
+详细解释<br>
+$top_difficulty_explanation</p>
+<p>故事片段重写<br>
+$top_difficulty_story_rewrite</p>
+<p><strong>新故事片段存在的问题:</strong><br>
+(仅在存在问题时包含)<br>
+$top_difficulty_issues</p>
+<p><strong>问题解决尝试:</strong><br>
+(仅在存在问题时包含)<br>
+$top_difficulty_fix_attempt</p>
+<p><strong>针对第二高排名难点的详细解释与故事片段重写:</strong><br>
+详细解释<br>
+$second_difficulty_explanation</p>
+<p>故事片段重写<br>
+$second_difficulty_story_rewrite</p>
+<p><strong>新故事片段存在的问题:</strong><br>
+(仅在存在问题时包含)<br>
+$second_difficulty_issues</p>
+<p><strong>问题解决尝试:</strong><br>
+(仅在存在问题时包含)<br>
+$second_difficulty_fix_attempt</p>
+<p><strong>针对第三高排名难点的详细解释与故事片段重写:</strong><br>
+详细解释<br>
+$third_difficulty_explanation</p>
+<p>故事片段重写<br>
+$third_difficulty_story_rewrite</p>
+<p><strong>新故事片段存在的问题:</strong><br>
+(仅在存在问题时包含)<br>
+$third_difficulty_issues</p>
+<p><strong>问题解决尝试:</strong><br>
+(仅在存在问题时包含)<br>
+$third_difficulty_fix_attempt</p>
+<p><strong>完整故事重写与吸引力改进:</strong><br>
+$full_story_with_improvements</p>
+<p>这个范式旨在帮助写作者系统化地思考和解决写作中遇到的各种问题，从而提高故事的整体质量和吸引力。</p></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://Chiron-star.github.io/chrion.github.io"> Zessi </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if(""!=""){
+    var now=new Date();
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","Chiron-star/chrion.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+<script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script>
+</html>
