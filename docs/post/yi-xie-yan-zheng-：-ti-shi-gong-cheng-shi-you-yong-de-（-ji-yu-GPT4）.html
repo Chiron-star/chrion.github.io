@@ -68,26 +68,35 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <div class="markdown-body" id="postBody"><p>关于提示工程是否有用，有多大用，一直都没有一个定量的表述。下面是我在实际生活工作中的实际案例，验证提示工程的有效性。我是一个即将毕业的研究生，我会用GPT4编程、解决疑惑、写作、科研等。</p>
 <h2>编程</h2>
 <ul>
-<li>小结<br>
-提示工程是有用的，用处的大小可以是从0到1，从无到有而不仅仅是优化了一些效率。</li>
+<li>
+<p>小结<br>
+提示工程是有用的，用处的大小可以是从0到1，从无到有而不仅仅是优化了一些效率。</p>
+</li>
+<li>
+<p>拿一道考试中的真题为例，基于精巧提示词给出的答案和直接问的答案进行对比，选了一个典型的用例，这证明了效果。</p>
+</li>
 </ul>
-<p>拿一道考试中的真题为例，基于精巧提示词给出的答案和直接问的答案进行对比，选了一个典型的用例，这证明了效果。<br>
-1.基于巧妙提示词的（通过率100%）<br>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/Chiron-star/chrion.github.io/assets/64126734/cbfa5eb8-b68a-44bd-a6c5-a1c1f4d35245"><img src="https://github.com/Chiron-star/chrion.github.io/assets/64126734/cbfa5eb8-b68a-44bd-a6c5-a1c1f4d35245" alt="image" style="max-width: 100%;"></a><br>
-2.直接询问的（通过率36%）<br>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/Chiron-star/chrion.github.io/assets/64126734/7c2fbc9d-3e42-40cb-ae22-00955d4627e9"><img src="https://github.com/Chiron-star/chrion.github.io/assets/64126734/7c2fbc9d-3e42-40cb-ae22-00955d4627e9" alt="5664125800e8c15579b1176b5aa6aad" style="max-width: 100%;"></a></p>
-<p>其中两者都是基于动态规划，但前者使用了前缀和进行了优化（提示词诱导的），而后者给出了更直接的解决方案，显然在相同时间或者交互成本下，前者取得了更高的效率（100% vs 36%）。</p>
+<ol>
+<li>基于巧妙提示词的（通过率100%）<br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/Chiron-star/chrion.github.io/assets/64126734/cbfa5eb8-b68a-44bd-a6c5-a1c1f4d35245"><img src="https://github.com/Chiron-star/chrion.github.io/assets/64126734/cbfa5eb8-b68a-44bd-a6c5-a1c1f4d35245" alt="image" style="max-width: 100%;"></a></li>
+<li>直接询问的（通过率36%）<br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/Chiron-star/chrion.github.io/assets/64126734/7c2fbc9d-3e42-40cb-ae22-00955d4627e9"><img src="https://github.com/Chiron-star/chrion.github.io/assets/64126734/7c2fbc9d-3e42-40cb-ae22-00955d4627e9" alt="5664125800e8c15579b1176b5aa6aad" style="max-width: 100%;"></a></li>
+</ol>
+<p>--&gt;其中两者都是基于动态规划，但前者使用了前缀和进行了优化（提示词诱导的），而后者给出了更直接的解决方案，显然在相同时间或者交互成本下，前者取得了更高的效率（100% vs 36%）。</p>
 <h3>附录</h3>
 <ul>
 <li>提示词被包装到<a href="https://chat.openai.com/g/g-vvg8XXOlR-coder" rel="nofollow">GPTs</a>中，欢迎使用。</li>
-<li></li>
 </ul>
-<p>-题目描述<br>
-小苯是“小红书app”的一位博主，他在自己的账号中发布了n篇分享，编号从1到 n。有一天他想试试看自己能不能准确的记住这n篇分享的点赞数，但他很快就发现凭自己的记忆力根本没法准确地记住每一篇的点赞数，但他记得如下两种信息:<br>
-1.每篇分享的点赞量都为正数，且不超过m。<br>
-2.第i篇分享的点赞量和第i+1篇分享的点赞量的大小关系。<br>
+<ul>
+<li>题目描述<br>
+小苯是“小红书app”的一位博主，他在自己的账号中发布了n篇分享，编号从1到 n。有一天他想试试看自己能不能准确的记住这n篇分享的点赞数，但他很快就发现凭自己的记忆力根本没法准确地记住每一篇的点赞数，但他记得如下两种信息:</li>
+</ul>
+<ol>
+<li>每篇分享的点赞量都为正数，且不超过m。</li>
+<li>第i篇分享的点赞量和第i+1篇分享的点赞量的大小关系。<br>
 他想知道，在已知这些信息的前提下，所有分享的点赞量有多少种不同的可能。<br>
-(结果可能很大，请输出其对 1000000007 取模的值)</p>
+(结果可能很大，请输出其对 1000000007 取模的值)</li>
+</ol>
 <ul>
 <li>输入描述:<br>
 输入包含两行。<br>
