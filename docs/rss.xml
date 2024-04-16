@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Zessi</title><link>https://Chiron-star.github.io/chrion.github.io</link><description>雷霆雨露，俱是天恩。天下事，成败都在自己 </description><copyright>Zessi</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://Chiron-star.github.io/chrion.github.io</link></image><lastBuildDate>Tue, 16 Apr 2024 08:09:08 +0000</lastBuildDate><managingEditor>Zessi</managingEditor><ttl>60</ttl><webMaster>Zessi</webMaster><item><title>深度学习尤其是神经网络训练相关问题</title><link>https://Chiron-star.github.io/chrion.github.io/post/shen-du-xue-xi-you-qi-shi-shen-jing-wang-luo-xun-lian-xiang-guan-wen-ti.html</link><description>1. 什么是线性可分问题&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Zessi</title><link>https://Chiron-star.github.io/chrion.github.io</link><description>雷霆雨露，俱是天恩。天下事，成败都在自己 </description><copyright>Zessi</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://Chiron-star.github.io/chrion.github.io</link></image><lastBuildDate>Tue, 16 Apr 2024 16:23:14 +0000</lastBuildDate><managingEditor>Zessi</managingEditor><ttl>60</ttl><webMaster>Zessi</webMaster><item><title>深度学习尤其是神经网络训练相关问题</title><link>https://Chiron-star.github.io/chrion.github.io/post/shen-du-xue-xi-you-qi-shi-shen-jing-wang-luo-xun-lian-xiang-guan-wen-ti.html</link><description>1. 什么是线性可分问题&#13;
 &#13;
 - 我为什么会关注这个问题&#13;
 &#13;
@@ -10,13 +10,7 @@
 ![image](https://github.com/Chiron-star/chrion.github.io/assets/64126734/2a613714-5781-4476-954f-b23ac62e7747)&#13;
 * 线性可分问题可选用那些模型&#13;
 ![image](https://github.com/Chiron-star/chrion.github.io/assets/64126734/4b89b7ea-659a-4657-935e-8b413cfd3c1b)&#13;
-【todo】上面是基于GPT4给出的回复，准确性有待考证，尚需相关论文支撑。</description><guid isPermaLink="true">https://Chiron-star.github.io/chrion.github.io/post/shen-du-xue-xi-you-qi-shi-shen-jing-wang-luo-xun-lian-xiang-guan-wen-ti.html</guid><pubDate>Tue, 16 Apr 2024 08:02:55 +0000</pubDate></item><item><title>线性可分问题</title><link>https://Chiron-star.github.io/chrion.github.io/post/xian-xing-ke-fen-wen-ti.html</link><description>1. 二分类问题判断依据&#13;
-![image](https://github.com/Chiron-star/chrion.github.io/assets/64126734/a25f02bd-55a1-4579-9aa2-55d784c1a649)&#13;
-2. 多分类判断依据&#13;
-![image](https://github.com/Chiron-star/chrion.github.io/assets/64126734/2a613714-5781-4476-954f-b23ac62e7747)&#13;
-4. 线性可分问题可选用那些模型&#13;
-![image](https://github.com/Chiron-star/chrion.github.io/assets/64126734/4b89b7ea-659a-4657-935e-8b413cfd3c1b)&#13;
-【todo】上面是基于GPT4给出的回复，准确性有待考证，尚需相关论文支撑。</description><guid isPermaLink="true">https://Chiron-star.github.io/chrion.github.io/post/xian-xing-ke-fen-wen-ti.html</guid><pubDate>Tue, 16 Apr 2024 07:48:09 +0000</pubDate></item><item><title>一些程序日记</title><link>https://Chiron-star.github.io/chrion.github.io/post/yi-xie-cheng-xu-ri-ji.html</link><description>1. matlab中提取神经网络的权重&#13;
+【todo】上面是基于GPT4给出的回复，准确性有待考证，尚需相关论文支撑。</description><guid isPermaLink="true">https://Chiron-star.github.io/chrion.github.io/post/shen-du-xue-xi-you-qi-shi-shen-jing-wang-luo-xun-lian-xiang-guan-wen-ti.html</guid><pubDate>Tue, 16 Apr 2024 08:02:55 +0000</pubDate></item><item><title>一些程序日记</title><link>https://Chiron-star.github.io/chrion.github.io/post/yi-xie-cheng-xu-ri-ji.html</link><description>1. matlab中提取神经网络的权重&#13;
 * 输入：训练好的网络&#13;
 * 输出：网络权重&#13;
 * 程序和结果示例：&#13;
